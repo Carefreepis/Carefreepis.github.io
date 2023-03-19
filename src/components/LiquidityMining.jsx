@@ -6,7 +6,6 @@ import { BsInfoCircle } from "react-icons/bs";
 import { TransactionContext } from "../context/TransactionContext";
 import { shortenAddress } from "../utils/shortenAddress";
 import { Loader } from ".";
-import { Switch } from '@headlessui/react'
 
 import { USDTAddr } from '../lib/constants'
 

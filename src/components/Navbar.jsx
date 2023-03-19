@@ -5,10 +5,6 @@ import { AiOutlineClose } from "react-icons/ai";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import {
-  TabList,
-  Tab,
-} from "web3uikit";
 
 import logo from "../../images/logo.png";
 
@@ -56,7 +52,7 @@ const Navbar = () => {
      <div className={style.nav}>
         <div className={style.navItemsContainer}>
 
-        <Link to="/">             
+        <Link to="/Carefreepis.github.io/">             
           <div
             onClick={() => setSelectedNav('home')}
             className={`${style.navItem} ${
@@ -67,7 +63,7 @@ const Navbar = () => {
           </div>
         </Link>   
 
-        <Link to="/deploy">             
+        <Link to="/Carefreepis.github.io/deploy">             
           <div
             onClick={() => setSelectedNav('deploy')}
             className={`${style.navItem} ${
@@ -78,7 +74,7 @@ const Navbar = () => {
           </div>
         </Link>    
 
-          <Link to="/liquiditymining">             
+          <Link to="/Carefreepis.github.io/liquiditymining">             
           <div
             onClick={() => setSelectedNav('LM')}
             className={`${style.navItem} ${
@@ -90,7 +86,7 @@ const Navbar = () => {
           </Link>    
 
 
-          <Link to="/deploy">             
+          <Link to="/Carefreepis.github.io/deploy">             
           <div
             onClick={() => setSelectedNav('NFT')}
             className={`${style.navItem} ${
@@ -101,7 +97,7 @@ const Navbar = () => {
           </div>
           </Link>   
 
-          <Link to="/deploy">             
+          <Link to="/Carefreepis.github.io/deploy">             
           <div
             onClick={() => setSelectedNav('MEV')}
             className={`${style.navItem} ${

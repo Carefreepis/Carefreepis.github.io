@@ -4,11 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "docs:dev": "vitepress dev docs",
-		"docs:build": "vitepress build docs",
-		"docs:serve": "vitepress serve docs"   
+    "serve": "vite preview"
   },
+  "homepage": "https://Carefreepis.github.io",
   "dependencies": {
     "@tailwindcss/forms": "^0.3.4",
     "autoprefixer": "^10.4.0",
@@ -18,7 +16,8 @@
     "postcss": "^8.3.11",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.0",
