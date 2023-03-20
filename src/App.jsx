@@ -11,9 +11,9 @@ const App = () => (
           <li><Link to="/">222</Link></li>
         </ul> */}
       <Routes>
-        <Route path="/Carefreepis.github.io/" element={<Welcome/>}/>    
-        <Route path="/Carefreepis.github.io/deploy" element={<Deploy/>}/>
-        <Route path="/Carefreepis.github.io/liquiditymining" element={<LiquidityMining/>}/>
+        <Route path="/" element={<Welcome/>}/>    
+        <Route path="/deploy" element={<Deploy/>}/>
+        <Route path="/liquiditymining" element={<LiquidityMining/>}/>
       </Routes>
       
     </div>

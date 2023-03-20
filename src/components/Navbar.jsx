@@ -52,7 +52,7 @@ const Navbar = () => {
      <div className={style.nav}>
         <div className={style.navItemsContainer}>
 
-        <Link to="/Carefreepis.github.io/">             
+        <Link to="/">             
           <div
             onClick={() => setSelectedNav('home')}
             className={`${style.navItem} ${
@@ -63,7 +63,7 @@ const Navbar = () => {
           </div>
         </Link>   
 
-        <Link to="/Carefreepis.github.io/deploy">             
+        <Link to="/deploy">             
           <div
             onClick={() => setSelectedNav('deploy')}
             className={`${style.navItem} ${
@@ -74,7 +74,7 @@ const Navbar = () => {
           </div>
         </Link>    
 
-          <Link to="/Carefreepis.github.io/liquiditymining">             
+          <Link to="/liquiditymining">             
           <div
             onClick={() => setSelectedNav('LM')}
             className={`${style.navItem} ${
@@ -86,7 +86,7 @@ const Navbar = () => {
           </Link>    
 
 
-          <Link to="/Carefreepis.github.io/deploy">             
+          <Link to="/deploy">             
           <div
             onClick={() => setSelectedNav('NFT')}
             className={`${style.navItem} ${
@@ -97,7 +97,7 @@ const Navbar = () => {
           </div>
           </Link>   
 
-          <Link to="/Carefreepis.github.io/deploy">             
+          <Link to="/deploy">             
           <div
             onClick={() => setSelectedNav('MEV')}
             className={`${style.navItem} ${
