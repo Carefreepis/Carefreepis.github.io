@@ -39,8 +39,8 @@ const style = {
     
 }
 
-const Welcome = () => {
-  const { currentAccount, connectWallet, handleChange, sendLiquidityMining, formLiquidityMining, isDeploying } = useContext(TransactionContext);
+const LiquidityMining = () => {
+  const { currentAccount, connectWallet, handleChange, sendLiquidityMining, formLiquidityMining, isLoading } = useContext(TransactionContext);
 
   // const [quickName, setquickName] = useState("");
   // const [quicksymbol, setquicksymbol] = useState("");
@@ -304,7 +304,7 @@ const Welcome = () => {
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 
-            {isDeploying
+            {isLoading
               ? <Loader />
               : (
                 <button
@@ -362,4 +362,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default LiquidityMining;

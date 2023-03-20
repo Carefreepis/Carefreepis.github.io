@@ -274,7 +274,7 @@ export const TransactionsProvider = ({ children }) => {
     try {
       if (ethereum) {
         console.log("metamask已连接账户")
-        //console.log("metamask网络类型:"+metamask.networkVersion)
+        console.log("当前账户:"+ currentAccount)
   
         // 执行交易发送
         // 获取表达数据
@@ -282,7 +282,7 @@ export const TransactionsProvider = ({ children }) => {
           name, symbol, totalsupply, rewardAddr, 
           marketingWalletAddr, tokenBalanceForReward,
           buyFeeSetting_1, buyFeeSetting_2, buyFeeSetting_3, buyFeeSetting_4,
-          sellFeeSetting_1, sellFeeSetting_2, sellFeeSetting_3, sellFeeSetting_4 } = formData
+          sellFeeSetting_1, sellFeeSetting_2, sellFeeSetting_3, sellFeeSetting_4 } = formLiquidityMining
 
           console.log("marketingWalletAddr:"+ marketingWalletAddr)
           console.log("name:"+ name)
@@ -302,19 +302,23 @@ export const TransactionsProvider = ({ children }) => {
           console.log("sellFeeSetting_4:"+ sellFeeSetting_4)
 
 
+
           const paddmarketingWalletAddr = ethers.utils.zeroPad(marketingWalletAddr, 32)
-          const namePosition = ethers.utils.zeroPad(0x1c0, 32)
+          const namePosition = ethers.utils.zeroPad(0x1C0, 32)
           const symbolPosition = ethers.utils.zeroPad(0x200, 32)   
           const parsedTotalsupply = ethers.utils.zeroPad(ethers.utils.parseEther(totalsupply),32)
           const paddrewardAddr = ethers.utils.zeroPad(rewardAddr, 32)
-          const paddbuyFeeSetting_1 = ethers.utils.zeroPad(buyFeeSetting_1, 32)
-          const paddbuyFeeSetting_2 = ethers.utils.zeroPad(buyFeeSetting_2, 32)
-          const paddbuyFeeSetting_3 = ethers.utils.zeroPad(buyFeeSetting_3, 32)
-          const paddbuyFeeSetting_4 = ethers.utils.zeroPad(buyFeeSetting_4, 32)
-          const paddsellFeeSetting_1 = ethers.utils.zeroPad(sellFeeSetting_1, 32)
-          const paddsellFeeSetting_2 = ethers.utils.zeroPad(sellFeeSetting_2, 32)
-          const paddsellFeeSetting_3 = ethers.utils.zeroPad(sellFeeSetting_3, 32)
-          const paddsellFeeSetting_4 = ethers.utils.zeroPad(sellFeeSetting_4, 32)
+
+          const paddbuyFeeSetting_1 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(buyFeeSetting_1, 0)), 32);
+          const paddbuyFeeSetting_2 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(buyFeeSetting_2, 0)), 32);
+          const paddbuyFeeSetting_3 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(buyFeeSetting_3, 0)), 32);
+          const paddbuyFeeSetting_4 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(buyFeeSetting_4, 0)), 32);
+
+          const paddsellFeeSetting_1 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(sellFeeSetting_1, 0)), 32);
+          const paddsellFeeSetting_2 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(sellFeeSetting_2, 0)), 32);
+          const paddsellFeeSetting_3 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(sellFeeSetting_3, 0)), 32);
+          const paddsellFeeSetting_4 = ethers.utils.hexZeroPad(ethers.utils.hexlify(ethers.utils.parseUnits(sellFeeSetting_4, 0)), 32);
+
           const parsedtokenBalanceForReward = ethers.utils.zeroPad(ethers.utils.parseEther(tokenBalanceForReward),32)
           const nameBytelength = ethers.utils.zeroPad(name.length, 32)
           const paddname = ethers.utils.formatBytes32String(name) 
@@ -337,48 +341,58 @@ export const TransactionsProvider = ({ children }) => {
           console.log("sellFeeSetting_2:"+ paddsellFeeSetting_2)
           console.log("sellFeeSetting_3:"+ paddsellFeeSetting_3)
           console.log("sellFeeSetting_4:"+ paddsellFeeSetting_4)
-          console.log("tokenBalanceForReward:"+ parsedtokenBalanceForReward)
 
+          console.log("tokenBalanceForReward:"+ parsedtokenBalanceForReward)
           console.log("nameBytelength:"+ nameBytelength)
           console.log("paddname:"+ paddname)
           console.log("symbolBytelength:"+ symbolBytelength)
           console.log("paddsymbol:"+ paddsymbol)          
 
 
-
-
-        return
-        // const paddaddressTo = ethers.utils.zeroPad(addressTo, 32)
-        // const namePosition = ethers.utils.zeroPad(0xa0, 32)
-        // const symbolPosition = ethers.utils.zeroPad(0xe0, 32)         
-        // const nameBytelength = ethers.utils.zeroPad(name.length, 32)
-        // const paddname = ethers.utils.formatBytes32String(name) 
-        // const symbolBytelength = ethers.utils.zeroPad(symbol.length, 32)
-        // const paddsymbol = ethers.utils.formatBytes32String(symbol)
-        // const parsedTotalsupply = ethers.utils.zeroPad(ethers.utils.parseEther(totalsupply),32)
-        // const parsedInitialsupply = ethers.utils.zeroPad(ethers.utils.parseEther(initialsupply),32)    
-        // const constructorBytecode = (ethers.utils.solidityPack(
-        //   ["address",
-        //   "address",
-        //   "address",
-        //   "address",
-        //   "address",
-        //   "address",
-        //   "bytes",
-        //   "address",
-        //   "bytes"],
-        //   [paddaddressTo,
-        //     namePosition,
-        //     symbolPosition,
-        //     parsedTotalsupply,
-        //     parsedInitialsupply, 
-        //     nameBytelength, 
-        //     paddname,
-        //     symbolBytelength,
-        //     paddsymbol]))
-  
-        // const runtimeBytecode = ethers.utils.solidityPack(["address","address"],[erc20DeployCode,constructorBytecode])
           
+        const constructorBytecode = (ethers.utils.solidityPack(
+          ["address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "address",
+          "bytes",
+          "address",
+          "bytes"],
+          [paddmarketingWalletAddr,
+            namePosition,
+            symbolPosition,
+            parsedTotalsupply,
+            paddrewardAddr,  
+            paddbuyFeeSetting_1,
+            paddbuyFeeSetting_2,
+            paddbuyFeeSetting_3,
+            paddbuyFeeSetting_4,
+            paddsellFeeSetting_1,
+            paddsellFeeSetting_2,
+            paddsellFeeSetting_3,
+            paddsellFeeSetting_4,
+            parsedtokenBalanceForReward,
+            nameBytelength, 
+            paddname,
+            symbolBytelength,
+            paddsymbol]))
+            console.log(constructorBytecode);       
+        // const runtimeBytecode = ethers.utils.solidityPack(["address","address"],[erc20DeployCode,constructorBytecode])
+        // console.log(runtimeBytecode);  
+
+
+
         // // 使用ethers signer部署合约
         // // 正确方法！
         // setIsDeploying(true);  // 等待交易结束

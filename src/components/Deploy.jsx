@@ -23,7 +23,7 @@ const style = {
   currencySelectorTitle: `my-2 rounded-full p-1  text-white flex w-2/5 align-items:center justify-center`,
 }
 
-const Welcome = () => {
+const Deploy = () => {
   const { currentAccount, connectWallet, handleChange, sendETHTransaction, sendERCDeploy2,formData, formDataDeploy2,isLoading,isDeploying } = useContext(TransactionContext);
 
   const handleSubmit = (e) => {
@@ -107,4 +107,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default Deploy;
