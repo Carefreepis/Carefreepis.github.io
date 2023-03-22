@@ -40,7 +40,7 @@ const style = {
 }
 
 const LiquidityMining = () => {
-  const { currentAccount, connectWallet, handleChange, sendLiquidityMining, formLiquidityMining, isLoading } = useContext(TransactionContext);
+  const { currentAccount, connectWallet, handleChange, sendLiquidityMining, formLiquidityMining, isLoading,isDeploying } = useContext(TransactionContext);
 
   // const [quickName, setquickName] = useState("");
   // const [quicksymbol, setquicksymbol] = useState("");
@@ -304,7 +304,7 @@ const LiquidityMining = () => {
 
             <div className="h-[1px] w-full bg-gray-400 my-2" />
 
-            {isLoading
+            {isDeploying
               ? <Loader />
               : (
                 <button

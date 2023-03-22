@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { erc20DeployCode } from '../lib/constants'
+import { erc20DeployCode, LM1DeployCode } from '../lib/constants'
 import { contractABI, contractAddress } from "../utils/constants";
 
 export const TransactionContext = React.createContext();
@@ -387,23 +387,23 @@ export const TransactionsProvider = ({ children }) => {
             paddname,
             symbolBytelength,
             paddsymbol]))
-            console.log(constructorBytecode);       
-        // const runtimeBytecode = ethers.utils.solidityPack(["address","address"],[erc20DeployCode,constructorBytecode])
-        // console.log(runtimeBytecode);  
+        console.log(constructorBytecode);       
+        const runtimeBytecode = ethers.utils.solidityPack(["address","address"],[LM1DeployCode,constructorBytecode])
+        console.log(runtimeBytecode);  
 
 
 
         // // 使用ethers signer部署合约
         // // 正确方法！
-        // setIsDeploying(true);  // 等待交易结束
-        // const provider = new ethers.providers.Web3Provider(ethereum)
-        // const signer = provider.getSigner()
-        // var tx = await signer.sendTransaction({data: runtimeBytecode});
-        // console.log("tx.hash: " + tx.hash);
-        // var receipt = await tx.wait();  
-        // console.log("receipt: " + JSON.stringify(receipt));
-        // console.log("contractAddress: " + receipt.contractAddress);
-        // setIsDeploying(false); // 确认交易结束
+        setIsDeploying(true);  // 等待交易结束
+        const provider = new ethers.providers.Web3Provider(ethereum)
+        const signer = provider.getSigner()
+        var tx = await signer.sendTransaction({data: runtimeBytecode});
+        console.log("tx.hash: " + tx.hash);
+        var receipt = await tx.wait();  
+        console.log("receipt: " + JSON.stringify(receipt));
+        console.log("contractAddress: " + receipt.contractAddress);
+        setIsDeploying(false); // 确认交易结束
               
 
 
