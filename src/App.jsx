@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Navbar, Welcome, Footer, Services, Transactions, Deploy, LiquidityMining, Sidebar } from "./components";
+import { Navbar, Welcome, Footer, Services, Transactions, Deploy, LiquidityMining, Sidebar} from "./components";
 
 // const Sidebar = () => (
 //   <div className="bg-white w-1/7 h-screen fixed left-0 top-0">
@@ -11,7 +11,7 @@ const App = () => (
 
   <div className="min-h-screen flex">
     <Sidebar />
-    <div className="w-full" style={{ marginLeft: "9.6667%" }}>
+    <div className="w-full" >
       <div className="gradient-bg-welcome">
         <Navbar />
         <Routes>
