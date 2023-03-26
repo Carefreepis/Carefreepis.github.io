@@ -2,6 +2,7 @@ import { FileOutlined, PieChartOutlined, UserOutlined ,DesktopOutlined,TeamOutli
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../../images/logo.png"
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -40,13 +41,9 @@ const Navbar = () => {
       }}
     >
       <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-        <div
-          style={{
-            height: 32,
-            margin: 16,
-            background: 'rgba(255, 255, 255, 0.2)',
-          }}
-        />
+        <Link to="/">
+          <img src={logo} alt="logo" />
+        </Link>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} />
       </Sider>
     </Layout>
