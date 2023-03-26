@@ -1,125 +1,100 @@
-import React, { useContext } from "react";
+import React, { useContext , useState} from "react";
 import { shortenAddress } from "../utils/shortenAddress";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { TransactionContext } from "../context/TransactionContext";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { Menu } from 'antd';
 
-import logo from "../../images/logo.png";
+
+const items = [
+  {
+    label: (<Link to="/">主页</Link>),
+      
+    key: 'mail',
+    icon: <MailOutlined />,
+  },
+  {
+    label: '社区成员功能',
+    key: 'app',
+    icon: <AppstoreOutlined />,
+    disabled: true,
+  },
+  {
+    label: '科学家工具',
+    key: 'SubMenu',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        type: 'group',
+        label: 'Item 1',
+        children: [
+          {
+            label: 'Option 1',
+            key: 'setting:1',
+          },
+          {
+            label: 'Option 2',
+            key: 'setting:2',
+          },
+        ],
+      },
+      {
+        type: 'group',
+        label: 'Item 2',
+        children: [
+          {
+            label: 'Option 3',
+            key: 'setting:3',
+          },
+          {
+            label: 'Option 4',
+            key: 'setting:4',
+          },
+        ],
+      },
+    ],
+  },
+  {
+    label: (<Link to="/">文档</Link>),
+      
+    key: 'doucument',
+    icon: <MailOutlined />,
+  },
+  {
+    label: (
+      <a href="https://twitter.com/MerlinKbb" target="_blank" rel="noopener noreferrer">
+        点击联系管理员
+      </a>
+    ),
+    key: 'alipay',
+  },
+];
+
 
 const NavBarItem = ({ title, classprops }) => (
   <li className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
 );
 
-const style = {
-  wrapper: `p-4 w-screen flex justify-between items-center`,
-  headerLogo: `flex w-1/4 items-center justify-start`,
-  nav: `md:flex hidden w-2/3 justify-center items-center`,
-  navItemsContainer: `flex bg-white rounded-3xl`,
-  navItem: `px-4 py-2 m-1 flex items-center text-lg font-semibold text-[0.9rem] cursor-pointer rounded-3xl `,
-  activeNavItem: `bg-blue-400 `,
-  buttonsContainer: `flex w-1/4 justify-end items-center`,
-  button: `flex items-center bg-[#191B1F] rounded-2xl mx-2 text-[0.9rem] font-semibold cursor-pointer`,
-  buttonPadding: `p-2`,
-  buttonTextContainer: `h-8 flex items-center`,
-  buttonIconContainer: `flex items-center justify-center w-8 h-8`,
-  buttonAccent: `bg-[#172A42] border border-[#191B1F] hover:border-[#234169] h-full rounded-2xl flex items-center justify-center text-[#4F90EA]`,
-}
-
-
-
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const { currentAccount,connectWallet } = useContext(TransactionContext);
   const [selectedNav, setSelectedNav] = React.useState('home')
+  const [current, setCurrent] = useState('mail');
+
+  const onClick = (e) => {
+    console.log('click ', e);
+    setCurrent(e.key);
+  };
 
 
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
-      {/* <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["流动性挖矿","链上发币", "NFT发布", "链上套利"].map((item, index) => (
-          <NavBarItem key={item + index} title={item} />
-        ))}
-      </ul> */}
 
-     <div className={style.nav}>
-        <div className={style.navItemsContainer}>
-
-        <Link to="/">             
-          <div
-            onClick={() => setSelectedNav('home')}
-            className={`${style.navItem} ${
-              selectedNav === 'home' && style.activeNavItem
-            }`}
-          >
-           主页
-          </div>
-        </Link>   
-
-        <Link to="/deploy">             
-          <div
-            onClick={() => setSelectedNav('deploy')}
-            className={`${style.navItem} ${
-              selectedNav === 'deploy' && style.activeNavItem
-            }`}
-          >
-            ICO
-          </div>
-        </Link>    
-
-          <Link to="/liquiditymining">             
-          <div
-            onClick={() => setSelectedNav('LM')}
-            className={`${style.navItem} ${
-              selectedNav === 'LM' && style.activeNavItem
-            }`}
-          >
-            流动性挖矿计划
-          </div>
-          </Link>    
-
-
-          <Link to="/deploy">             
-          <div
-            onClick={() => setSelectedNav('NFT')}
-            className={`${style.navItem} ${
-              selectedNav === 'NFT' && style.activeNavItem
-            }`}
-          >
-            NFT 发布
-          </div>
-          </Link>   
-
-          <Link to="/deploy">             
-          <div
-            onClick={() => setSelectedNav('MEV')}
-            className={`${style.navItem} ${
-              selectedNav === 'MEV' && style.activeNavItem
-            }`}
-          >
-            MEV工具箱
-          </div>
-          </Link>     
-
-
-      </div>
-      </div>
-      
-      {/* <div className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-      <Link to="/">主页</Link>  
-      <Link to="/deploy">链上发币</Link>
-      <Link to="/deploy">链上发币</Link>
-      <Link to="/deploy">链上发币</Link>
-      </div> */}
-
-      {/* <TabList defaultActiveKey={1} tabStyle="bar" >
-        <Tab tabKey={1} tabName={"流动性挖矿"}></Tab>
-        <Tab tabKey={2} tabName={"链上发币"}>
-        </Tab>
-        <Tab tabKey={3} tabName={"NFT发布"}></Tab>
-        <Tab tabKey={4} tabName={"链上套利"}></Tab>
-      </TabList> */}
+      <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className="rounded-full mx-8"/>
+    
 
 
       {currentAccount ? (
